@@ -1,0 +1,38 @@
+.navBar{
+    background-color: rgba(0, 1, 53, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 10%;
+}
+button{
+    font-family: "nasalization";
+    border: 2px solid rgb(2, 221, 255);
+    background-color:rgb(175, 99, 255);
+    box-sizing: border-box;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0px 20px;
+    
+}
+a{
+    text-decoration: none;  
+}
+ul{
+    list-style: none;
+}
+
+button:hover{
+    background:rgb(2, 221, 255); 
+}
+button:active{
+    background:rgb(2, 221, 255);   
+}
+#logo {
+    cursor: pointer;
+    max-width: 110px;
+    max-height: 120px;
+    margin-top: 20%;
+}
