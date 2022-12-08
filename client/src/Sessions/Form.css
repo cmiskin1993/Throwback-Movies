@@ -19,7 +19,8 @@
     margin-top: 50px;
     font-family: "nasalization";
     text-align: center;
-    font-size: 20px;   
+    font-size: 20px; 
+  
 }
  input[name="name"]:not(.edit-input) { 
      border: 2px solid #282828;

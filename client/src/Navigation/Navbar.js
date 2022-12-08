@@ -18,20 +18,27 @@ const Navbar = ({ currentUser, updateUser }) => {
         navigate("/")
   }
 
-
-
+  if( currentUser ) {
   return (
     <div className="navBar">
           <ul>
-            <button><NavLink to="/" id="logo" className="active-link" >Welcome</NavLink></button>
-              <button><NavLink to='/signup' className="active-link">Sign Up</NavLink></button>
-              <button><NavLink to='/login' className="active-link">Login</NavLink></button>
-          </ul>
-
-        <div> {currentUser ? <button  className='logout-button' onClick={handleLogOut}>Log Out</button>  : null }</div>
-
+            <li><NavLink to="/" id="logo" className="active-link" >Welcome</NavLink></li>
+            <button  className='logout-button' onClick={handleLogOut}>Log Out</button>          
+            </ul>
     </div>
-  );
+    )
+  }
+  return (
+    <div className="navBar">
+        <ul>
+          <li><NavLink to="/" id="logo" className="active-link" >Welcome</NavLink></li>
+
+          <li><NavLink to='/signup' className="active-link">Sign Up</NavLink></li>
+          <li><NavLink to='/login' className="active-link">Login</NavLink></li>
+        </ul>
+    </div>
+  )
 }
 
 export default Navbar
+

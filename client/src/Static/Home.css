@@ -2,4 +2,22 @@ h1{
     font-family: "stormfaze";
     text-align: center;
     font-size: 150px;
+    position: absolute;
+
+    width: 100%;
+    height: 0%;
+    margin-top: 230px;
+    display: flex;
+    justify-content: center;
+}
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(150, 4, 255, 0.312);
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

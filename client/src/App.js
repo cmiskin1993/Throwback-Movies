@@ -19,6 +19,8 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(false)
 
 
+
+
   useEffect(() => {
     fetch("/authorized_user")
     .then((res) => {
@@ -44,7 +46,7 @@ const App = () => {
   return (
     <div className='global-style'>
     <Router>
-    <Navbar currentUser={currentUser} updateUser={updateUser} />
+    <Navbar currentUser={currentUser} updateUser={updateUser}  />
         <Routes>
           <Route path="/" element = {<Home />} />
           <Route path="/login" element={ <Login updateUser={updateUser} /> } />

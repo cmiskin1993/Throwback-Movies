@@ -50,8 +50,7 @@ const User = () => {
 
     return (
     <div>
-        <h1>{user.name}</h1>
-            <h3>My Tickets</h3>
+        <h2>{user.name}</h2>
                 <div className='grid-container'>
                     <ul>
                         {user.tickets?.map(ticket => (
