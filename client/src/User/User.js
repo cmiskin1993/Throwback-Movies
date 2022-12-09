@@ -19,7 +19,6 @@ const User = () => {
             if(res.ok){
                 res.json().then(user => {
                     setUser(user)
-                    console.log(user.tickets)
                     setLoading(false)
                 })
             }else {
@@ -52,14 +51,6 @@ const User = () => {
     <div>
         <h2>{user.name}</h2>
                 <div className='grid-container'>
-                    <ul>
-                        {user.tickets?.map(ticket => (
-                        <li key={ticket.id} className="ticket-card">
-                            <img src={ticket.concert.image} className="top-ticket" alt="ticket-img" />
-                            <h2>{ticket.concert.artist}</h2>
-                        </li>
-                        ))}
-                    </ul>
                 </div>
             <button onClick={handleDelete}>Delete Account</button>
     </div>
