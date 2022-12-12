@@ -8,8 +8,6 @@ const Navbar = ({ currentUser, updateUser }) => {
 
   const navigate = useNavigate()
 
-
-
   const handleLogOut = () => {
     fetch('/logout',{
       method: "DELETE"
@@ -22,12 +20,16 @@ const Navbar = ({ currentUser, updateUser }) => {
   return (
     <div className="navBar">
           <ul>
+            <h4> {currentUser.name} </h4>
             <li><NavLink to="/" id="logo" className="active-link" >Welcome</NavLink></li>
+            <li><NavLink to="/movies" >Movies</NavLink></li>
             <button  className='logout-button' onClick={handleLogOut}>Log Out</button>          
             </ul>
     </div>
     )
   }
+
+
   return (
     <div className="navBar">
         <ul>

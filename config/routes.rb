@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
 
   resources :users, only: [:show, :create, :destroy]
+  resources :movies, only: [:index, :create, :show, :update, :destroy]
+
 
   post '/login', to: 'sessions#create'
   get '/authorized_user', to:'users#show'

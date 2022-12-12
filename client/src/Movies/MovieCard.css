@@ -1,0 +1,19 @@
+.cards {
+    list-style: none;
+    
+  }
+  .card {
+    width: 400px;
+    overflow: hidden;
+    background-color: #fdfcfc;
+    color: #000;
+    border-radius: 7px;
+    box-shadow: -4px -4px 20px rgba(0, 0, 0, 0.505);
+    margin: 1rem;
+  
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    text-align: center;
+    background-color: #fdfcfc;
+  }
