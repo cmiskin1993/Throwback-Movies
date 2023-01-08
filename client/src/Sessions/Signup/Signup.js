@@ -29,7 +29,7 @@ const Signup = () => {
         .then(res => {
             if(res.ok){
                 res.json().then(user => {
-                    navigate(`/users/${user.id}`)
+                    navigate('/movies')
                 })
             }else {
                 res.json().then(json => setErrors(Object.entries(json.errors)))

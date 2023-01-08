@@ -20,11 +20,11 @@ const Navbar = ({ currentUser, updateUser }) => {
   return (
     <div className="navBar">
           <ul>
-            <h4> {currentUser.name} </h4>
-            <li><NavLink to="/" id="logo" className="active-link" >Welcome</NavLink></li>
+            <h4 className='user-name'> {currentUser.name} </h4>
+            <li><NavLink to="/" id="logo" className="active-link" >Welcome </NavLink></li>
             <li><NavLink to="/movies" >Movies</NavLink></li>
             <button  className='logout-button' onClick={handleLogOut}>Log Out</button>          
-            </ul>
+          </ul>
     </div>
     )
   }

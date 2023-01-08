@@ -44,6 +44,13 @@
      margin-bottom: 20px;
      width: 100%;
  }
+ textarea[name="comment"]:not(.edit-input) { 
+    border: 2px solid #282828;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
  select{
      border: 1px solid #d9d9d9;
      box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
@@ -93,4 +100,15 @@ input[type="submit"] {
     width: 100%;
     background: linear-gradient(to bottom right, #98A1D1, #A5D6B1 );
     color: rgb(0, 0, 0);
+}
+.comments-form-container {
+    background: rgb(230, 211, 250);
+    border: 2px solid #282828;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 600px;
+    margin-top: 50px;
+    padding: 20px 20px;
 }

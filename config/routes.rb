@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :create, :destroy]
   resources :movies, only: [:index, :create, :show, :update, :destroy]
+  resources :likes, only: [:index, :create]
+  resources :comments, only: [:index, :create, :show, :update, :destroy]
+
 
 
   post '/login', to: 'sessions#create'

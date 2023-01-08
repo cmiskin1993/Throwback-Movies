@@ -5,6 +5,7 @@
     align-items: center;
     padding: 2px 10%;
 }
+
 li, button, h4{
     font-family: "nasalization";
 }
@@ -45,7 +46,6 @@ li:active{
     box-sizing: border-box;
     background: rgb(2, 221, 255);
     color: rgb(0, 0, 0);
-    margin-left: 700px;    
 }
 h4{
     color: white;

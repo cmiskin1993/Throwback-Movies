@@ -9,6 +9,7 @@ import Login from './Sessions/Login/Login'
 import Signup from './Sessions/Signup/Signup'
 import User from './User/User'
 import MoviePage from './Movies/MovieContainer'
+import MovieDetail from './Movies/MovieDetails'
 
 import PageNotFound from './Errors/PageNotFound'
 
@@ -19,6 +20,8 @@ const App = () => {
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
   const [movies, setMovies] = useState([])
+  const [likes, setLikes] = useState([])
+  const [user, setUser] = useState([])
 
 
 
@@ -30,6 +33,7 @@ const App = () => {
         res.json()
         .then((user) => {
           updateUser(user);
+          setUser(user);
           fetchMovies()
         });
       }
@@ -52,9 +56,10 @@ const App = () => {
   const updateUser = (user) => setCurrentUser(user)
 
 
- 
-  
+
+
   if(errors) return <h1>{errors}</h1>
+
 
 
   return (
@@ -66,8 +71,9 @@ const App = () => {
           <Route path="/login" element={ <Login updateUser={updateUser} /> } />
           <Route path="/signup" element={ <Signup /> } />
           <Route path="/users/:id" element={ <User updateUser={updateUser} /> } />
-          <Route path="/movies" element = {<MoviePage movies={movies} />} />
-          
+          <Route path="/movies" element = {<MoviePage movies={movies} likes={likes} setLikes={setLikes} user={user} setUser={setUser} />} />
+          <Route path="/movies/:id" element = {<MovieDetail />} />
+
           <Route path="*" element={<PageNotFound />} />
           </Routes>
       </Router>

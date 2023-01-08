@@ -5,6 +5,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.string :genre
       t.text :description
       t.string :image
+      t.boolean :like, default: :false
       t.integer :user_id
 
 
