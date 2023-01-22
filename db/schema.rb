@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2023_01_06_184938) do
     t.text "description"
     t.string "image"
     t.boolean "like", default: false
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

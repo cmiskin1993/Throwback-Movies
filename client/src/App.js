@@ -22,7 +22,7 @@ const App = () => {
   const [movies, setMovies] = useState([])
   const [likes, setLikes] = useState([])
   const [user, setUser] = useState([])
-
+  const [comments, setComments] = useState([])
 
 
 
@@ -35,6 +35,7 @@ const App = () => {
           updateUser(user);
           setUser(user);
           fetchMovies()
+          fetchComments()
         });
       }
     })
@@ -51,9 +52,22 @@ const App = () => {
     })
   }
 
+  const fetchComments = () => {
+    fetch('/comments')
+    .then(res => {
+      if(res.ok){
+        res.json().then(setComments)
+      }else {
+        res.json().then(data => setErrors(data.error))
+      }
+    })
+  }
 
 
   const updateUser = (user) => setCurrentUser(user)
+
+  const addComment = (comment) => setComments(current => [...current,comment])
+
 
 
 
@@ -67,12 +81,12 @@ const App = () => {
     <Router>
     <Navbar currentUser={currentUser} updateUser={updateUser}  />
         <Routes>
-          <Route path="/" element = {<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={ <Login updateUser={updateUser} /> } />
           <Route path="/signup" element={ <Signup /> } />
           <Route path="/users/:id" element={ <User updateUser={updateUser} /> } />
-          <Route path="/movies" element = {<MoviePage movies={movies} likes={likes} setLikes={setLikes} user={user} setUser={setUser} />} />
-          <Route path="/movies/:id" element = {<MovieDetail />} />
+          <Route path="/movies" element={ <MoviePage movies={movies} likes={likes} setLikes={setLikes} user={user} setUser={setUser} />} />
+          <Route path="/movies/:id" element={ <MovieDetail addComment={addComment} comments={comments} /> } />
 
           <Route path="*" element={<PageNotFound />} />
           </Routes>

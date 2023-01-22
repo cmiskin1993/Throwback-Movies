@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import '../Form.css'
 
 const Login = ({ updateUser }) => {
@@ -56,6 +56,9 @@ return (
     <input type='password' name='password' value={password} onChange={handleChange} />
     
     <input type='submit' value='Log in!' />
+
+    <h3><NavLink className='link' to="/signup" >Don't have an account yet?</NavLink></h3>
+
     </form>
     <h2>{errors? <div>{errors}</div>:null} </h2>
 

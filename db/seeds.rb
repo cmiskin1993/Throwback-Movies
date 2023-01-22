@@ -18,5 +18,9 @@ puts "🌱 Seeding spices..."
 # movie8 = Movie.create(title: 'Scary Movie', genre: 'Comedy', description:'A year after disposing of the body of a man they accidentally killed, a group of dumb teenagers are stalked by a bumbling serial killer.', image:'https://m.media-amazon.com/images/M/MV5BMGEzZjdjMGQtZmYzZC00N2I4LThiY2QtNWY5ZmQ3M2ExZmM4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg')
 # movie9 = Movie.create(title: 'Remember the Titans', genre: 'Drama', description:'The true story of a newly appointed African-American coach and his high school team on their first season as a racially integrated unit.', image:'https://m.media-amazon.com/images/M/MV5BYThkMzgxNjEtMzFiOC00MTI0LWI5MDItNDVmYjA4NzY5MDQ2L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg')
 
+# Comment.create(movie_id: 1, user_id: 1, content: "What a throwback, if you are craving some early 2000s nostalgia this is the movie for you.") 
+# Comment.create(movie_id: 1, user_id: 1, content: "I absolutely love Reese Wither spoon and I completely adore this movie! It is such a fun going, early 2000’s classic, how could it not be one of my favourites?")
+# Comment.create(movie_id: 1, user_id: 1, content: "I loved this movie, brought me right back to middle school when I watched it for the first time.") 
+
 
 puts "✅ Done seeding!"

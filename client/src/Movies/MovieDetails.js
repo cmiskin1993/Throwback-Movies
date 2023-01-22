@@ -2,10 +2,12 @@ import  { useParams } from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import './MovieDetails.css'
 import '../Sessions/Form.css'
+import '../Movies/CommentsCard.css'
+import CommentsCard from './CommentsCard'
 
 
 
-const MovieDetail = ({currentUser}) => {
+const MovieDetail = ({currentUser, addComment, comments}) => {
 
 
   const [movie, setMovie] = useState({})
@@ -14,9 +16,34 @@ const MovieDetail = ({currentUser}) => {
   
   const params = useParams()
 
-  const onSubmit = (e) =>{
-    e.preventDefault()
+  const [formData, setFormData] = useState({
+      content:''
+  })
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    fetch('/comments',{
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({...formData, ongoing:true})
+    })
+    .then(res => {
+        if(res.ok){
+        res.json().then(addComment)
+        console.log(addComment)
+        } else {
+        res.json().then(data => {
+            setErrors(Object.entries(data.errors))
+        })
+        }
+    })
+    }
+
 
   useEffect(()=>{
     fetch(`/movies/${params.id}`)
@@ -36,7 +63,7 @@ const MovieDetail = ({currentUser}) => {
 
 
 
-
+console.log(comments)
   
 
   if(loading) return <h1>Loading</h1>
@@ -53,11 +80,20 @@ const MovieDetail = ({currentUser}) => {
             <p>{description}</p>
         </div>
 
+        <div>
           <form className='comments-form-container' onSubmit={onSubmit}>
             <label> Comment </label>
-            <textarea name='comment' />
+            <textarea name='content' value={formData.content} onChange={handleChange} />
             <input type='submit' value='Submit' />
           </form>
+        </div>
+        
+        <div className='comment-grid-container'>
+          {comments?.map((comment) => (
+                <CommentsCard  key={comment.id} comment={comment} />
+                ))}
+        </div>
+
     </div>
     )
 }

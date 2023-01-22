@@ -3,6 +3,8 @@
     grid-template-columns: auto auto auto;
     padding: 5px;
     row-gap: 20px;
+    column-gap: 0px;
+
 }
 .card {
     width: 325px;
