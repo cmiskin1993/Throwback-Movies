@@ -2,7 +2,7 @@ import MovieCard from '/Users/cnestel-admin/Desktop/Flatiron-Projects/phase-5-pr
 import '../Movies/MovieCard.css'
 
 
-const MovieContainer = ({movies, user}) => {
+const MovieContainer = ({movies, user, likes, setLikes}) => {
 
 
   return (
@@ -10,7 +10,7 @@ const MovieContainer = ({movies, user}) => {
       <h2>The Iconic Movies You Loved</h2>
         <div className='grid-container'>
             {movies?.map((movie) => (
-              <MovieCard  key={movie.id} movie={movie} user={user}  />
+              <MovieCard  key={movie.id} movie={movie} user={user} likes={likes} setLikes={setLikes}  />
               ))}
         </div>
 </div>

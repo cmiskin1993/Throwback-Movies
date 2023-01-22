@@ -12,8 +12,9 @@ end
 
 def create
     @movie = Movie.find(params[:movie_id])
-    @movie = comments.create(comment_params)
-    render json: comments, status: :created
+    params[:user_id] = current_user.id
+    @comment = @movie.comments.create(comment_params)
+    render json: @comment, status: :created
 end
 
 

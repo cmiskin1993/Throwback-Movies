@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+    has_many :comments
     # validates :title, presence: true, uniqueness: {case_sensitive: false}
     # validates :genre, presence: true
     # validates :description, presence: true, uniqueness: {case_sensitive: false}

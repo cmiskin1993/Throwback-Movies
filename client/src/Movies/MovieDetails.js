@@ -30,7 +30,7 @@ const MovieDetail = ({currentUser, addComment, comments}) => {
     fetch('/comments',{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
-        body:JSON.stringify({...formData, ongoing:true})
+        body:JSON.stringify({...formData, ongoing: true, movie_id: movie.id})
     })
     .then(res => {
         if(res.ok){
