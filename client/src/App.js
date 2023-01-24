@@ -9,6 +9,8 @@ import Signup from "./Sessions/Signup/Signup";
 import User from "./User/User";
 import MoviePage from "./Movies/MovieContainer";
 import MovieDetail from "./Movies/MovieDetails";
+import CommentDetails from "./Movies/CommentDetails";
+import CommentEdit from "./Movies/CommentEdit";
 
 import PageNotFound from "./Errors/PageNotFound";
 
@@ -69,7 +71,20 @@ const App = () => {
   const addComment = (comment) =>
     setComments((current) => [...current, comment]);
 
+    const deleteComment = (id) => setComments(current => current.filter(comment => comment.id !== id))
+
+
   if (errors) return <h1>{errors}</h1>;
+
+  const updateComment = (updatedComment) => setComments(current => {
+    return current.map(comment => {
+     if(comment.id === updateComment.id){
+       return updatedComment
+     } else {
+       return comment
+     }
+    })
+  })
 
   return (
     <div className="global-style">
@@ -80,24 +95,12 @@ const App = () => {
           <Route path="/login" element={<Login updateUser={updateUser} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/users/:id" element={<User updateUser={updateUser} />} />
-          <Route
-            path="/movies"
-            element={
-              <MoviePage
-                movies={movies}
-                likes={likes}
-                setLikes={setLikes}
-                user={user}
-                setUser={setUser}
-              />
-            }
-          />
-          <Route
-            path="/movies/:id"
-            element={
-              <MovieDetail addComment={addComment} comments={comments} />
-            }
-          />
+          <Route path="/movies" element={ <MoviePage movies={movies} likes={likes} setLikes={setLikes} user={user} setUser={setUser} />} />
+          <Route path="/movies/:id" element={ <MovieDetail addComment={addComment} comments={comments} />} />
+          <Route path="/comments/:id" element = {<CommentDetails deleteComment={deleteComment} currentUser={currentUser} />} />
+          <Route path="/comments/:id/edit" element = {<CommentEdit updateComment={updateComment} comments={comments} />} />
+
+
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>

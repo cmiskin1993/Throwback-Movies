@@ -6,8 +6,8 @@ def index
     end
 
 def show
-    movie = Comment.find(params[:user_id])
-    render json: comments, status: :ok
+    comment = Comment.find(params[:id])
+    render json: comment, status: :ok
 end 
 
 def create
@@ -16,6 +16,18 @@ def create
     @comment = @movie.comments.create(comment_params)
     render json: @comment, status: :created
 end
+
+def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    head :no_content 
+end 
+
+def update 
+    comment = Comment.find(params[:id])
+    comment.update!(comment_params)
+    render json: comment, status: :accepted
+end 
 
 
 private
