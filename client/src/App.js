@@ -29,7 +29,6 @@ const App = () => {
           updateUser(user);
           setUser(user);
           fetchMovies();
-          fetchComments();
           fetchLikes();
         });
       }
@@ -46,15 +45,15 @@ const App = () => {
     });
   };
 
-  const fetchComments = () => {
-    fetch("/comments").then((res) => {
-      if (res.ok) {
-        res.json().then(setComments);
-      } else {
-        res.json().then((data) => setErrors(data.error));
-      }
-    });
-  };
+  // const fetchComments = () => {
+  //   fetch("/comments").then((res) => {
+  //     if (res.ok) {
+  //       res.json().then(setComments);
+  //     } else {
+  //       res.json().then((data) => setErrors(data.error));
+  //     }
+  //   });
+  // };
 
   const fetchLikes = () => {
     fetch("/likes").then((res) => {
@@ -68,8 +67,6 @@ const App = () => {
 
   const updateUser = (user) => setCurrentUser(user);
 
-  const addComment = (comment) =>
-    setComments((current) => [...current, comment]);
 
   const deleteComment = (id) =>
     setComments((current) => current.filter((comment) => comment.id !== id));
@@ -111,7 +108,7 @@ const App = () => {
           <Route
             path="/movies/:id"
             element={
-              <MovieDetail addComment={addComment} comments={comments} />
+              <MovieDetail  comments={comments} />
             }
           />
           <Route
