@@ -61,18 +61,14 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
   };
 
   return (
-    <div>
-      <div className="card">
+    
+      <NavLink to={`/movies/${id}`}><div className="card">
         <img src={image} className="movie-img" alt="movie-img" />
-        <NavLink to={`/movies/${id}`}>
-          {" "}
-          <h2 className="movie-title">{title}</h2>{" "}
-        </NavLink>
+         {" "} <h2 className="movie-title">{title}</h2>{" "}
         <button className="like-button" onClick={onClick}>
           {isLiked ? "Liked" : "Like 👍"}
         </button>
-      </div>
-    </div>
+    </div></NavLink>
   );
 };
 

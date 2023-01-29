@@ -16,15 +16,14 @@
     transition: 0.3s;
     text-align: center;
     border: 2px solid rgb(0, 0, 0);
-    border-radius: 7px;
     margin-left: 60px;
+}
+.card:hover{
+    border: 2px solid rgb(175, 99, 255);
 }
 .movie-title{
     font-size: 20px;
     margin-top: -20px;
-}
-.movie-title:hover{
-    color: rgb(175, 99, 255);
 }
 .movie-img{
     width: 100%;
@@ -33,4 +32,7 @@
 }
 .like-button{
     margin-bottom: 30px;
+}
+.comment-card:hover{
+    border: 3px solid rgb(0, 0, 0);
 }
