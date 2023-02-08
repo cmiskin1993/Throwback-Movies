@@ -1,22 +1,43 @@
-import { useState } from 'react'
-import {NavLink, useNavigate} from 'react-router-dom'
-import '../Navigation/Navbar.css'
+import React from "react";
+import {NavLink, useNavigate} from 'react-router-dom';
+import '../Navigation/Navbar.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../Actions/sessions';
 
 
-const Navbar = ({ currentUser, updateUser }) => {
+
+const Navbar = () => {
+
+  const currentUser = useSelector(state => state.sessions.currentUser)
+  const updateUser = useSelector(state => state.sessions.updateUser)
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
 
-  const navigate = useNavigate()
+  const handleLogOut = e => {
+    e.preventDefault();
 
-  const handleLogOut = () => {
-    fetch('/logout',{
-      method: "DELETE"
-    })
-    updateUser("")
-        navigate("/")
+    dispatch(logout(navigate))
+    
+    console.log('logged out')
+
   }
 
-  if( currentUser ) {
+  // const handleLogOut = () => {
+  //   fetch('/logout',{
+  //     method: "DELETE"
+  //   })
+  //   updateUser("")
+  //       navigate("/")
+  // }
+
+
+console.log('updateUser', updateUser)
+console.log('currentUser', currentUser)
+
+  if( updateUser ) {
   return (
     <div className="navBar">
           <ul>

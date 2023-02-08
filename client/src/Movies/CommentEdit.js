@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
     const CommentEdit = ({updateComment}) => {
 
     const navigate = useNavigate()
-
+    const params = useParams();
 
         
     const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
     const [errors, setErrors] = useState([])
     const {id} = useParams()
     useEffect(() => {
-    fetch(`/comments/${id}`)
+    fetch(`/comments/${params.commentId}`)
     .then(res => res.json())
     .then(setFormData)
     },[])
@@ -28,7 +28,7 @@ import { useNavigate } from 'react-router-dom';
 
     function onSubmit(e){
     e.preventDefault()
-    fetch(`/comments/${id}`,{
+    fetch(`/comments/${params.commentId}`,{
         method:'PATCH',
         headers: {'Content-Type': 'application/json'},
         body:JSON.stringify(formData)
@@ -36,7 +36,7 @@ import { useNavigate } from 'react-router-dom';
     .then(res => {
         if(res.ok){
         res.json().then(updateComment)
-        navigate('/movies')
+        navigate(`/movies/${params.movieId}`)
         } else {
         res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
         }

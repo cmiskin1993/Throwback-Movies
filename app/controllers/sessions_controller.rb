@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
 
   # post '/login'
   def create
-    user = User.find_by_name(params[:name])
-    if user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      render json: user, status: :ok
+    @user = User.find_by_name(params[:name])
+    if @user&.authenticate(params[:password])
+      session[:user_id] = @user.id
+      render json: @user, status: :ok
     else 
       render json: {errors: "Incorrect username or password"}, status: :not_found
     end

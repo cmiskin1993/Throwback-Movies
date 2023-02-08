@@ -7,13 +7,16 @@ import CommentCard from './CommentCard'
 
 
 
-const MovieDetail = ({currentUser, addComment, comments}) => {
+const MovieDetail = ({currentUser}) => {
 
 
   const [movie, setMovie] = useState({})
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState(false)
+  const [comments, setComments] = useState([])
 
+  const addComment = (comment) =>
+    setComments((current) => [...current, comment]);
   
   const params = useParams()
 
@@ -29,12 +32,11 @@ const MovieDetail = ({currentUser, addComment, comments}) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    fetch('/comments',{
+    fetch(`/movies/${params.movieId}/comments`,{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body:JSON.stringify({...formData, ongoing: true, movie_id: movie.id})
-    })
-    .then(res => {
+    }).then(res => {
         if(res.ok){
         res.json().then(addComment)
         setFormData('')
@@ -48,7 +50,7 @@ const MovieDetail = ({currentUser, addComment, comments}) => {
 
 
   useEffect(()=>{
-    fetch(`/movies/${params.id}`)
+    fetch(`/movies/${params.movieId}`)
     .then(res => { 
       if(res.ok){
         res.json().then(data => {
@@ -60,8 +62,14 @@ const MovieDetail = ({currentUser, addComment, comments}) => {
         res.json().then(data => setErrors(data.error))
       }
     })
+    fetch(`/movies/${params.movieId}/comments`).then((res) => {
+      if (res.ok) {
+        res.json().then(data => setComments(data));
+      } else {
+        res.json().then((data) => setErrors(data.error));
+      }
+    });
   },[])
-
 
 
 
@@ -92,7 +100,7 @@ console.log(comments)
         
         <div className='comment-grid-container'>
           {comments?.map((comment) => (
-                <CommentCard  key={comment.id} comment={comment} />
+                <CommentCard  key={comment.id} movie={movie} comment={comment} />
                 ))}
         </div>
 

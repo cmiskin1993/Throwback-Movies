@@ -11,7 +11,7 @@ const CommentDetails = ({ deleteComment }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`/comments/${params.id}`).then((res) => {
+    fetch(`/comments/${params.commentId}`).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
           setComment(data);
@@ -25,13 +25,13 @@ const CommentDetails = ({ deleteComment }) => {
   }, []);
 
   const handleDelete = () => {
-    fetch(`/comments/${params.id}`, {
+    fetch(`/comments/${params.commentId}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     }).then((res) => {
       if (res.ok) {
         deleteComment(id);
-        navigate("/movies");
+        navigate(`/movies/${params.movieId}`);
       } else {
         res
           .json()
@@ -45,14 +45,14 @@ const CommentDetails = ({ deleteComment }) => {
   if (loading) return <h1>Loading</h1>;
   if (errors) return <h1>{errors}</h1>;
 
-  const { id, content } = comment;
+  const { id, movie_id, content } = comment;
 
   return (
     <div className="comment-card">
       <div className="card-top">
         <p>{content}</p>
         <div className="center-buttons">
-          <NavLink to={`/comments/${id}/edit`}>
+          <NavLink to={`/movies/${movie_id}/comments/${id}/edit`}>
             {" "}
             <button>Edit</button>{" "}
           </NavLink>

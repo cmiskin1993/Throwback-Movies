@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
 
   resources :users, only: [:show, :create, :destroy]
-  resources :movies, only: [:index, :create, :show, :update, :destroy]
+
+  resources :movies, only: [:index, :create, :show, :update, :destroy] do
+    resources :comments, shallow: true
+  end
+
   resources :likes, only: [:index, :create]
-  resources :comments, only: [:index, :create, :show, :update, :destroy]
 
 
 
