@@ -7,8 +7,9 @@ const initialState = {
 }
 
 const sessionsReducer = (state=initialState, action) => {
-  console.log(state, 'state')
-  console.log(action.type)
+  // console.log(state, 'state')
+  // console.log(action.type)
+  console.log('Sessions Reducer:', action, state);
     switch(action.type) {
       case "SIGNUP":
         return {
@@ -16,7 +17,6 @@ const sessionsReducer = (state=initialState, action) => {
           updateUser: true
         }
       case "LOGOUT":
-        console.log('Sessions Reducer:', action)
         return initialState;
 
        case "LOGIN":

@@ -22,7 +22,7 @@ export const signup = (details, navigate) => {
 }
 
 export const login = (details, navigate) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch({ type: "REQUESTING" });
     const resp = await fetch('/login', {
       method: "POST",
@@ -37,7 +37,7 @@ export const login = (details, navigate) => {
     if(!resp.ok) {
       dispatch({ type: "ERRORS", payload: data.errors })
     } else {
-      console.log(data)
+      // console.log(data)
       dispatch({ type: "CLEAR_ERRORS" })
       dispatch({ type: "LOGIN", payload: data });
       navigate('/movies')

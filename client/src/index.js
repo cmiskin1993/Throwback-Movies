@@ -2,13 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import {
+  configureStore,
+  createImmutableStateInvariantMiddleware,
+  getDefaultMiddleware
+} from "@reduxjs/toolkit";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk';
 import rootReducer from './Reducers';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
+import loggerMiddleware from './middleware/logger';
+const immutableInvariantMiddleware = createImmutableStateInvariantMiddleware();
+const store = configureStore({ reducer: rootReducer, middleware: [thunk, createImmutableStateInvariantMiddleware(),...getDefaultMiddleware()] });
+window.$store = store;
 
 ReactDOM.render(
   <React.StrictMode>

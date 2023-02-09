@@ -13,7 +13,7 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
     setIsLiked(!!foundLike);
 }, [likes])
 
-  console.log(user);
+  // console.log(user);
 
   const createMovie = () => {
     const movieObj = {
@@ -43,7 +43,7 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
         user_id: user.id,
       };
 
-      console.log(likeObj);
+      // console.log(likeObj);
 
       fetch("/likes", {
         method: "POST",

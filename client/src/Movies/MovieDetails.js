@@ -4,10 +4,11 @@ import './MovieDetails.css'
 import '../Sessions/Form.css'
 import '../Movies/CommentCard.css'
 import CommentCard from './CommentCard'
+import RichTextEditor from '../TextEditor/RichTextEditor'
 
 
 
-const MovieDetail = ({currentUser}) => {
+const MovieDetail = () => {
 
 
   const [movie, setMovie] = useState({})
@@ -24,13 +25,15 @@ const MovieDetail = ({currentUser}) => {
       content:''
   })
   
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
-
   }
 
-  const onSubmit = (e) => {
+  
+
+  const handleSubmit = (e) => {
     e.preventDefault()
     fetch(`/movies/${params.movieId}/comments`,{
         method:'POST',
@@ -39,7 +42,9 @@ const MovieDetail = ({currentUser}) => {
     }).then(res => {
         if(res.ok){
         res.json().then(addComment)
-        setFormData('')
+        setFormData ({
+          content:''
+        })
         } else {
         res.json().then(data => {
             setErrors(Object.entries(data.errors))
@@ -58,7 +63,7 @@ const MovieDetail = ({currentUser}) => {
           setLoading(false)
         })
       } else {
-        console.log('error')
+        // console.log('error')
         res.json().then(data => setErrors(data.error))
       }
     })
@@ -80,7 +85,10 @@ console.log(comments)
   if(errors) return <h1>{errors}</h1>
 
   const {id, title, genre, image, description} = movie 
-  
+
+
+
+
   return (
     <div>
         <div>
@@ -91,9 +99,9 @@ console.log(comments)
         </div>
 
         <div>
-          <form className='comments-form-container' onSubmit={onSubmit}>
+          <form className='comments-form-container' onSubmit={handleSubmit}>
             <label> Comment </label>
-            <textarea name='content' value={formData.content} onChange={handleChange}  />
+            <textarea name='content' value={formData.content} onChange={handleChange}   />
             <input type='submit' value='Submit' />
           </form>
         </div>
@@ -103,10 +111,10 @@ console.log(comments)
                 <CommentCard  key={comment.id} movie={movie} comment={comment} />
                 ))}
         </div>
-
     </div>
     )
 }
+
 
 
 export default MovieDetail

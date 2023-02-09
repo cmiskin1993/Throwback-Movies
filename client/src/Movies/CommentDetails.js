@@ -18,7 +18,7 @@ const CommentDetails = ({ deleteComment }) => {
           setLoading(false);
         });
       } else {
-        console.log("error");
+        // console.log("error");
         res.json().then((data) => setErrors(data.error));
       }
     });
