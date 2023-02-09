@@ -31,7 +31,7 @@ const App = () => {
     dispatch(getCurrentUser());
     fetchMovies();
     fetchLikes();
-  }, [dispatch])
+  }, [true])
 
   // useEffect(() => {
   //   fetch("/authorized_user").then((res) => {

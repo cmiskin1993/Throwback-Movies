@@ -3,11 +3,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../Form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Actions/sessions";
+import Errors from "../../Errors/Errors";
 
-const Login = ({ updateUser }) => {
-  // const [errors, setErrors] = useState([])
+const Login = () => {
 
-  const errors = useSelector((state) => state.errors);
+//   const errors = useSelector((state) => state.errors);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -76,9 +76,7 @@ const Login = ({ updateUser }) => {
           </NavLink>
         </h3>
       </form>
-      <ul>
-        {console.log('errors :', errors)}
-      </ul>
+      <Errors></Errors>
     </>
   );
 };

@@ -1,10 +1,12 @@
 const initialState = []
 
 const errorsReducer = (state=initialState, action) => {
+  console.log('errorsReducer', state, action);
   switch(action.type) {
     case "ERRORS":
-      debugger
-      return [].concat(state).push(action.payload);
+      const newErrors = Object.assign([], state);
+      newErrors.push(action.payload);
+      return newErrors;
     case "CLEAR_ERRORS":
       return initialState;
     default:
