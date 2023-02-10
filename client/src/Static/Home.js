@@ -1,5 +1,5 @@
 import '../Static/Home.css';
-// import Gif from '../Assets/HomeVideo.gif'
+import HomeImage from '../Assets/movie_college.webp'
 
 
 const Home = () =>{
@@ -8,7 +8,7 @@ const Home = () =>{
     <div>
         <div className="overlay"></div>
         <h1 className="headline"> Be Kind <br/> Rewind</h1>
-        {/* <img src={Gif}  alt="gif" /> */}
+        <img src={HomeImage} alt={HomeImage} />
     </div>
     )
 }

@@ -9,7 +9,7 @@ import Navbar from "./Navigation/Navbar";
 import Login from "./Sessions/Login/Login";
 import Signup from "./Sessions/Signup/Signup";
 import User from "./User/User";
-import MoviePage from "./Movies/MovieContainer";
+import MovieContainer from "./Movies/MovieContainer";
 import MovieDetail from "./Movies/MovieDetails";
 import CommentDetails from "./Movies/CommentDetails";
 import CommentEdit from "./Movies/CommentEdit";
@@ -20,11 +20,11 @@ const App = () => {
   const requesting = useSelector(state => state.requesting);
   const dispatch = useDispatch();
 
-  // const [errors, setErrors] = useState(false);
-  // const [currentUser, setCurrentUser] = useState(false);
+  const [errors, setErrors] = useState(false);
+  const [currentUser, setCurrentUser] = useState(false);
+  const [user, setUser] = useState([]);
   const [movies, setMovies] = useState([]);
   const [likes, setLikes] = useState([]);
-  const [user, setUser] = useState([]);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -33,25 +33,25 @@ const App = () => {
     fetchLikes();
   }, [true])
 
-  // useEffect(() => {
-  //   fetch("/authorized_user").then((res) => {
-  //     if (res.ok) {
-  //       res.json().then((user) => {
-  //         // updateUser(user);
-  //         setUser(user);
-  //         fetchMovies();
-  //         fetchLikes();
-  //       });
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("/authorized_user").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          updateUser(user);
+          setUser(user);
+          fetchMovies();
+          fetchLikes();
+        });
+      }
+    });
+  }, []);
 
   const fetchMovies = () => {
     fetch("/movies").then((res) => {
       if (res.ok) {
         res.json().then(setMovies);
       } else {
-        // res.json().then((data) => setErrors(data.error));
+        res.json().then((data) => setErrors(data.error));
       }
     });
   };
@@ -61,18 +61,18 @@ const App = () => {
       if (res.ok) {
         res.json().then(setLikes);
       } else {
-        // res.json().then((data) => setErrors(data.error));
+        res.json().then((data) => setErrors(data.error));
       }
     });
   };
 
-  // const updateUser = (user) => setCurrentUser(user);
+  const updateUser = (user) => setCurrentUser(user);
 
 
   const deleteComment = (id) =>
     setComments((current) => current.filter((comment) => comment.id !== id));
 
-  // if (errors) return <h1>{errors}</h1>;
+  if (errors) return <h1>{errors}</h1>;
 
   const updateComment = (updatedComment) =>
     setComments((current) => {
@@ -97,11 +97,11 @@ const App = () => {
           <Route
             path="/movies"
             element={
-              <MoviePage
+              <MovieContainer
                 movies={movies}
                 likes={likes}
                 setLikes={setLikes}
-                user={user}
+                user={user} 
                 setUser={setUser}
               />
             }

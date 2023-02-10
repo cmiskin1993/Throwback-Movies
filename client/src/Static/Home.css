@@ -14,7 +14,12 @@ h1{
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(254, 254, 254, 0.385);
+    background-color: rgba(254, 254, 254, 0.53);
+}
+video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 img{
     width: 100%;

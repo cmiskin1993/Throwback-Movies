@@ -13,7 +13,7 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
     setIsLiked(!!foundLike);
 }, [likes])
 
-  // console.log(user);
+  console.log(user);
 
   const createMovie = () => {
     const movieObj = {
@@ -43,7 +43,7 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
         user_id: user.id,
       };
 
-      // console.log(likeObj);
+      console.log(likeObj);
 
       fetch("/likes", {
         method: "POST",
@@ -61,14 +61,18 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
   };
 
   return (
-    
-      <NavLink to={`/movies/${id}`}><div className="card">
+    <div>
+      <div className="card">
         <img src={image} className="movie-img" alt="movie-img" />
-         {" "} <h2 className="movie-title">{title}</h2>{" "}
+        <NavLink to={`/movies/${id}`}>
+          {" "}
+          <h2 className="movie-title">{title}</h2>{" "}
+        </NavLink>
         <button className="like-button" onClick={onClick}>
           {isLiked ? "Liked" : "Like 👍"}
         </button>
-    </div></NavLink>
+      </div>
+    </div>
   );
 };
 
