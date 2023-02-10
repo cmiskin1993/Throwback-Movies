@@ -10,14 +10,18 @@ export const signup = (details, navigate) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(details)
-    }).then(resp => resp.json()).then(data => {
-        dispatch({ type: "LOGIN", payload: data });
-        navigate('/movies');
-        // TODO: handle error
-        dispatch({ type: "DONE_REQUESTING" });
-    }).catch(err => {
-      console.error(err);
-    });
+    })
+
+    const data = await resp.json();
+    if(!resp.ok) {
+      dispatch({ type: "ERRORS", payload: data.errors })
+    } else {
+      // console.log(data)
+      dispatch({ type: "CLEAR_ERRORS" })
+      dispatch({ type: "LOGIN", payload: data });
+      navigate('/')
+    }
+    dispatch({ type: "DONE_REQUESTING" });
   }
 }
 
@@ -40,7 +44,7 @@ export const login = (details, navigate) => {
       // console.log(data)
       dispatch({ type: "CLEAR_ERRORS" })
       dispatch({ type: "LOGIN", payload: data });
-      navigate('/movies')
+      navigate('/')
     }
     dispatch({ type: "DONE_REQUESTING" });
   }

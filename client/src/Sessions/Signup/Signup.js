@@ -4,14 +4,19 @@ import '../Form.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { signup } from '../../Actions/sessions'
 
+
 const Signup = () => {
+
+    const errors = useSelector(state => state.errors);
+
+
     const [formData, setFormData] = useState({
         name:'',
         email:'',
         password:'',
     })
     
-    // const [errors, setErrors] = useState([])
+    
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
@@ -57,6 +62,8 @@ const onSubmit = async e => {
 
     // }
 
+    
+
 
     return (
         <> 
@@ -75,7 +82,8 @@ const onSubmit = async e => {
 
             <h3><NavLink className='link' to="/login" >Already have an account?</NavLink></h3>
         </form>
-        </>
+        <h2>{errors? errors.map((error, i) => <div key={i}> {error[0]} </div>) :null} </h2>
+     </>
     )
 }
 
