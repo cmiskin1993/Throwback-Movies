@@ -1,4 +1,4 @@
-import MovieCard from '/Users/cnestel-admin/Desktop/Flatiron-Projects/phase-5-project/Throwback-Movies/client/src/Movies/MovieCard.js'
+import MovieCard from '../Movies/MovieCard'
 import '../Movies/MovieCard.css'
 
 
