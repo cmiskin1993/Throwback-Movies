@@ -116,7 +116,7 @@ const App = () => {
             path="/movies/:movieId/comments/:commentId"
             element={
               <CommentDetails
-                deleteComment={deleteComment}
+                deleteComment={deleteComment} currentUser={currentUser}
               />
             }
           />
