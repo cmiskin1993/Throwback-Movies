@@ -4,7 +4,6 @@ import './MovieDetails.css'
 import '../Sessions/Form.css'
 import '../Movies/CommentCard.css'
 import CommentCard from './CommentCard'
-import RichTextEditor from '../TextEditor/RichTextEditor'
 
 
 
