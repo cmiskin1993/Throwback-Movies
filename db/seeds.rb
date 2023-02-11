@@ -8,6 +8,16 @@
 
 puts "🌱 Seeding spices..."
 
+# new users
+
+
+
+# movies
+
+# user 1 = User.create(name: 'John', email: 'john@gmail.com', password: 'Password')
+# user 2 = User.create(name: 'Jane', email: 'jane@gmail.com', password: 'Password')
+
+
 # movie1 = Movie.create(title: 'Legally Blonde', genre: 'Romantic Comedy', description:'Elle Woods, a fashionable sorority queen, is dumped by her boyfriend. She decides to follow him to law school. While she is there, she figures out that there is more to her than just looks.', image:'https://m.media-amazon.com/images/I/71JlXKJ+oNL._AC_SL1500_.jpg')
 # movie2 = Movie.create(title: 'The Sandlot', genre: 'Comedy', description:'In the summer of 1962, a new kid in town is taken under the wing of a young baseball prodigy and his rowdy team, resulting in many adventures.', image:'https://m.media-amazon.com/images/I/5166BKF2PFL._AC_SY580_.jpg')
 # movie3 = Movie.create(title: 'Clueless', genre: 'Romantic Comedy', description:'Shallow, rich and socially successful Cher is at the top of her Beverly Hills high schools pecking scale. Seeing herself as a matchmaker, Cher first coaxes two teachers into dating each other.', image:'https://m.media-amazon.com/images/I/51eyoH69TrL._AC_SY580_.jpg')
@@ -17,6 +27,8 @@ puts "🌱 Seeding spices..."
 # movie7 = Movie.create(title: 'Bring It On', genre: 'Romantic Comedy', description:'A champion high school cheerleading squad discovers its previous captain stole all their best routines from an inner-city school and must scramble to compete at this years championships.', image:'https://www.tvguide.com/a/img/catalog/provider/1/2/1-7470343339.jpg')
 # movie8 = Movie.create(title: 'Scary Movie', genre: 'Comedy', description:'A year after disposing of the body of a man they accidentally killed, a group of dumb teenagers are stalked by a bumbling serial killer.', image:'https://m.media-amazon.com/images/M/MV5BMGEzZjdjMGQtZmYzZC00N2I4LThiY2QtNWY5ZmQ3M2ExZmM4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg')
 # movie9 = Movie.create(title: 'Remember the Titans', genre: 'Drama', description:'The true story of a newly appointed African-American coach and his high school team on their first season as a racially integrated unit.', image:'https://m.media-amazon.com/images/M/MV5BYThkMzgxNjEtMzFiOC00MTI0LWI5MDItNDVmYjA4NzY5MDQ2L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg')
+
+# comments
 
 # Comment.create(movie_id: 1, user_id: 1, content: "What a throwback, if you are craving some early 2000s nostalgia this is the movie for you.") 
 # Comment.create(movie_id: 1, user_id: 1, content: "I absolutely love Reese Wither spoon and I completely adore this movie! It is such a fun going, early 2000’s classic, how could it not be one of my favourites?")
