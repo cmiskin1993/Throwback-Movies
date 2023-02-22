@@ -19,7 +19,7 @@
     margin-left: 60px;
 }
 .card:hover{
-    border: 2px solid rgb(175, 99, 255);
+    background-color: rgb(230, 211, 250);
 }
 .movie-title{
     font-size: 20px;
@@ -32,9 +32,6 @@
 }
 .like-button{
     margin-bottom: 30px;
-}
-.comment-card:hover{
-    border: 3px solid rgb(0, 0, 0);
 }
 
 .add-movie{

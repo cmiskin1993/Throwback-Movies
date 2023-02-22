@@ -13,7 +13,9 @@
     height: 20%;
     border-bottom: solid;
 }
-.card__exit {
+.edit-link {
+    font-size: small;
+    color: #000;
     grid-row: 1/2;
     justify-self: end;
     margin-left: 540px;
