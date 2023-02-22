@@ -10,6 +10,7 @@ import Login from "./Sessions/Login/Login";
 import Signup from "./Sessions/Signup/Signup";
 import User from "./User/User";
 import MovieContainer from "./Movies/MovieContainer";
+import AddMovie from "./Movies/AddMovie";
 import MovieDetail from "./Movies/MovieDetails";
 import CommentDetails from "./Movies/CommentDetails";
 import CommentEdit from "./Movies/CommentEdit";
@@ -26,6 +27,9 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
+  const [movie, setMovie] = useState([]);
+
+
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -85,6 +89,9 @@ const App = () => {
       });
     });
 
+    const addMovie = (movie) => setMovie(current => [...current,movie])
+
+
   return (
     <div className="global-style">
       <Router>
@@ -126,6 +133,9 @@ const App = () => {
               <CommentEdit updateComment={updateComment} comments={comments} />
             }
           />
+
+          <Route path="/add-movie" element={<AddMovie />} addMovie={addMovie} />
+
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
