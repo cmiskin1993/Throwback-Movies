@@ -47,6 +47,8 @@ const MovieDetail = () => {
         } else {
         res.json().then(data => {
             setErrors(Object.entries(data.errors))
+            console.log('error', errors)
+
         })
         }
     })
@@ -98,16 +100,18 @@ console.log(comments)
         </div>
 
         <div>
-          <form className='comments-form-container' onSubmit={handleSubmit}>
+        <h3>{errors ? errors.map(e => <div>{e[0]} {e[1]}</div>):null}</h3>
+
+          <form className='comments-form-container' onSubmit={handleSubmit}>          
             <label> Comment </label>
-            <textarea name='content' value={formData.content} onChange={handleChange}   />
+            <textarea rows={4} cols={40} name='content' value={formData.content} onChange={handleChange}   />
             <input type='submit' value='Submit' />
           </form>
         </div>
         
         <div className='comment-grid-container'>
           {comments?.map((comment) => (
-                <CommentCard  key={comment.id} movie={movie} comment={comment} />
+                <CommentCard  key={comment.id} movie={movie} comment={comment}  />
                 ))}
         </div>
     </div>

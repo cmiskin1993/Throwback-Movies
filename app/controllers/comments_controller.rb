@@ -34,6 +34,6 @@ end
 private
     
 def comment_params
-    params.permit(:id, :content, :movie_id, :user_id)
+    params.permit(:id, :content, :movie_id, :user_id, :name)    
     end
 end
