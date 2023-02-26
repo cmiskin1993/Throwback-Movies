@@ -6,12 +6,21 @@ import { useState } from "react";
 const MovieCard = ({ movie, likes, setLikes, user }) => {
   const { title, image, id } = movie;
   const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState();
 
-  useEffect(() => { 
+  useEffect(() => {
+    if (!likes && !movie) return;
+
+    setLikeCount(likes.filter(like => like.movie_id === movie.id).length);
+  }, [likes, movie]);
+
+  useEffect(() => {
     if (!likes) return;
-    const foundLike = likes.find((like) => like.user_id === user.id && like.movie_id === movie.id )
+    const foundLike = likes.find(
+      (like) => like.user_id === user.id && like.movie_id === movie.id
+    );
     setIsLiked(!!foundLike);
-}, [likes])
+  }, [likes]);
 
   console.log(user);
 
@@ -53,7 +62,9 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
         body: JSON.stringify(likeObj),
       })
         .then((r) => r.json())
-        .then(console.log);
+        .then(() => {
+          setLikeCount((likeCount) => likeCount + 1);
+        });
     };
 
     saveLike();
@@ -63,14 +74,14 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
   return (
     <div>
       <div className="card">
-      <NavLink to={`/movies/${id}`}>
-        <img src={image} className="movie-img" alt="movie-img" />
-          {" "}
+        <NavLink to={`/movies/${id}`}>
+          <img src={image} className="movie-img" alt="movie-img" />{" "}
           <h2 className="movie-title">{title}</h2>{" "}
         </NavLink>
         <button className="like-button" onClick={onClick}>
           {isLiked ? "Liked" : "Like 👍"}
         </button>
+        <p>{likeCount} likes</p>
       </div>
     </div>
   );

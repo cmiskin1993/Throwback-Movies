@@ -3,8 +3,8 @@ class CommentsController < ApplicationController
 def index
     # TODO: error handling for movie not found
     @movie = Movie.find(params[:movie_id])
-        render json: @movie.comments, status: :ok
-    end
+    render json: @movie.comments, status: :ok
+end
 
 def show
     comment = Comment.find(params[:id])

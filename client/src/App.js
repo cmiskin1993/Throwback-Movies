@@ -18,11 +18,10 @@ import PageNotFound from "./Errors/PageNotFound";
 
 const App = () => {
 
-  const requesting = useSelector(state => state.requesting);
+  const currentUser = useSelector(state => state.sessions.currentUser);
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
   const [user, setUser] = useState([]);
   const [movies, setMovies] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -31,24 +30,19 @@ const App = () => {
 
 
 
+  /**
+   * Called when app first loads.
+   * 
+   * Fetches current user (if logged in), movies, and likes. If
+   * user is NOT logged in, current user, movies, and likes will
+   * be empty.
+   */
   useEffect(() => {
     dispatch(getCurrentUser());
     fetchMovies();
     fetchLikes();
-  }, [true])
-
-  useEffect(() => {
-    fetch("/authorized_user").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          updateUser(user);
-          setUser(user);
-          fetchMovies();
-          fetchLikes();
-        });
-      }
-    });
   }, []);
+
 
   const fetchMovies = () => {
     fetch("/movies").then((res) => {
@@ -70,8 +64,15 @@ const App = () => {
     });
   };
 
-  const updateUser = (user) => setCurrentUser(user);
-
+  /**
+   * Called right after user logs in on Login page.
+   * 
+   * Fetches movies and likes now that user is logged in.
+   */
+  const onLogin = () => { 
+    fetchMovies();
+    fetchLikes();
+   }
 
   const deleteComment = (id) =>
     setComments((current) => current.filter((comment) => comment.id !== id));
@@ -98,8 +99,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login onLogin={onLogin} />} />
+          <Route path="/signup" element={<Signup onLogin={onLogin} />} />
           <Route path="/users/:id" element={<User  />} />
           <Route
             path="/movies"
@@ -108,7 +109,6 @@ const App = () => {
                 movies={movies}
                 likes={likes}
                 setLikes={setLikes}
-                user={user} 
                 setUser={setUser}
               />
             }

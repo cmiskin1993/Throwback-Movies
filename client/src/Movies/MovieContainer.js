@@ -1,10 +1,11 @@
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import MovieCard from '../Movies/MovieCard'
 import '../Movies/MovieCard.css'
 
 
-const MovieContainer = ({movies, user, likes, setLikes }) => {
-
+const MovieContainer = ({movies, likes, setLikes }) => {
+  const currentUser = useSelector(state => state.sessions.currentUser)
 
   return (
     <div>
@@ -15,7 +16,7 @@ const MovieContainer = ({movies, user, likes, setLikes }) => {
 
         <div className='grid-container'>
             {movies?.map((movie) => (
-              <MovieCard  key={movie.id} movie={movie} user={user} likes={likes} setLikes={setLikes} />
+              <MovieCard  key={movie.id} movie={movie} user={currentUser} likes={likes} setLikes={setLikes} />
               ))}
         </div>
 </div>

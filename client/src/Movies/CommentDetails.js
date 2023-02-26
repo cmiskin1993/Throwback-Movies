@@ -49,9 +49,9 @@ const CommentDetails = ({ deleteComment }) => {
 
   return (
     <div className="comment-card">
-      <div className="card-top">
+      <div className="">
         <p>{content}</p>
-        <div className="center-buttons">
+        <div className="text-center">
           <NavLink to={`/movies/${movie_id}/comments/${id}/edit`}>
             {" "}
             <button>Edit</button>{" "}

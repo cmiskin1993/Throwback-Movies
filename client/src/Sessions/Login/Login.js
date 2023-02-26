@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Actions/sessions";
 import Errors from "../../Errors/Errors";
 
-const Login = () => {
-
-//   const errors = useSelector((state) => state.errors);
+const Login = ({ onLogin }) => {
+  //   const errors = useSelector((state) => state.errors);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -27,7 +26,8 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(login(formData, navigate));
+    await dispatch(login(formData, navigate));
+    onLogin();
   };
 
   // const onSubmit = (e) =>{
@@ -77,7 +77,6 @@ const Login = () => {
         </h3>
       </form>
       <Errors></Errors>
-
     </>
   );
 };
