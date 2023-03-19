@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { signup } from "../../Actions/sessions";
 
 const Signup = ({ onLogin }) => {
-  const errors = useSelector((state) => state.errors);
+  // const errors = useSelector((state) => state.errors);
+  const [errors, setErrors] = useState();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,8 +29,13 @@ const Signup = ({ onLogin }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    await dispatch(signup(formData, navigate));
-    onLogin();
+    const data = await dispatch(signup(formData, navigate));
+    if (data.errors) {
+      setErrors(data.errors);
+    } else {
+      onLogin();
+      navigate("/");
+    }
   };
 
   // const onSubmit = (e) =>{
@@ -76,6 +82,17 @@ const Signup = ({ onLogin }) => {
         />
 
         <input type="submit" value="Sign up!" />
+        <div>
+          {/* errors = { name: ["cannot be blank", "is too short"], email: ["cannot be blank"] }
+            Object.entries(errors) => 
+            [["name", ["cannot be blank", "is too short"]], ["email", ["cannot be blank"]]]
+         */}
+          {errors
+            ? Object.entries(errors).map((error, i) => (
+                <div key={i}> {`${error[0]}: ${error[1]}`} </div>
+              ))
+            : null}
+        </div>
 
         <h3>
           <NavLink className="link" to="/login">
@@ -83,11 +100,6 @@ const Signup = ({ onLogin }) => {
           </NavLink>
         </h3>
       </form>
-      <h2>
-        {errors
-          ? errors.map((error, i) => <div key={i}> {error[0]} </div>)
-          : null}{" "}
-      </h2>
     </>
   );
 };

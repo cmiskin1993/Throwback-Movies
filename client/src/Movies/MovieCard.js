@@ -11,7 +11,7 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
   useEffect(() => {
     if (!likes && !movie) return;
 
-    setLikeCount(likes.filter(like => like.movie_id === movie.id).length);
+    setLikeCount(likes.filter((like) => like.movie_id === movie.id).length);
   }, [likes, movie]);
 
   useEffect(() => {
@@ -78,10 +78,12 @@ const MovieCard = ({ movie, likes, setLikes, user }) => {
           <img src={image} className="movie-img" alt="movie-img" />{" "}
           <h2 className="movie-title">{title}</h2>{" "}
         </NavLink>
+
         <button className="like-button" onClick={onClick}>
+          {" "}
+          <h5>{likeCount}</h5>
           {isLiked ? "Liked" : "Like 👍"}
         </button>
-        <p>{likeCount} likes</p>
       </div>
     </div>
   );

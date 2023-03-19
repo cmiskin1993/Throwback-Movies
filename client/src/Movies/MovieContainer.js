@@ -11,7 +11,7 @@ const MovieContainer = ({movies, likes, setLikes }) => {
     <div>
       <h2>The Iconic Movies You Loved</h2>
 
-      <NavLink to={"/add-movie"}> <button className='add-movie'> add new movie </button> </NavLink>
+      <NavLink to={"/movie/new"}> <button className='add-movie'> add new movie </button> </NavLink>
 
 
         <div className='grid-container'>

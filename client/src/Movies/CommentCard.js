@@ -7,8 +7,6 @@ const CommentCard = ({ comment, movie }) => {
   const currentUser = useSelector((state) => state.sessions.currentUser);
   const { id } = comment;
 
-  // console.log("comment name", comment.user.name);
-
   return (
     <div>
       <div className="comment-card">

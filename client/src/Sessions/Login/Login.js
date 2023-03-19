@@ -6,7 +6,7 @@ import { login } from "../../Actions/sessions";
 import Errors from "../../Errors/Errors";
 
 const Login = ({ onLogin }) => {
-  //   const errors = useSelector((state) => state.errors);
+  const [errors, setErrors] = useState();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -26,8 +26,13 @@ const Login = ({ onLogin }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    await dispatch(login(formData, navigate));
-    onLogin();
+    const data = await dispatch(login(formData, navigate));
+    if (data.errors) {
+      setErrors(data.errors);
+    } else {
+      onLogin();
+      navigate("/");
+    }
   };
 
   // const onSubmit = (e) =>{
@@ -69,14 +74,13 @@ const Login = ({ onLogin }) => {
         />
 
         <input type="submit" value="Log in!" />
-
+        <div>{errors}</div>
         <h3>
           <NavLink className="link" to="/signup">
             Don't have an account yet?
           </NavLink>
         </h3>
       </form>
-      <Errors></Errors>
     </>
   );
 };

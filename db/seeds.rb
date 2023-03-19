@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "🌱 Seeding spices..."
+puts "Adding dummy data"
 
 # new users
 
@@ -14,8 +14,8 @@ puts "🌱 Seeding spices..."
 
 # movies
 
-user1 = User.create(name: 'John', email: 'john@gmail.com', password: 'Password')
-user2 = User.create(name: 'Jane', email: 'jane@gmail.com', password: 'Password')
+User.create(name: 'John', email: 'john@gmail.com', password: 'Password')
+User.create(name: 'Jane', email: 'jane@gmail.com', password: 'Password')
 
 
 movie1 = Movie.create(title: 'Legally Blonde', genre: 'Romantic Comedy', description:'Elle Woods, a fashionable sorority queen, is dumped by her boyfriend. She decides to follow him to law school. While she is there, she figures out that there is more to her than just looks.', image:'https://m.media-amazon.com/images/I/71JlXKJ+oNL._AC_SL1500_.jpg')

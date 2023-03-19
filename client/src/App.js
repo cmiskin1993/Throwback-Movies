@@ -14,6 +14,7 @@ import AddMovie from "./Movies/AddMovie";
 import MovieDetail from "./Movies/MovieDetails";
 import CommentDetails from "./Movies/CommentDetails";
 import CommentEdit from "./Movies/CommentEdit";
+import About from "./Static/About";
 import PageNotFound from "./Errors/PageNotFound";
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
-  const [movie, setMovie] = useState([]);
+  const [newMovie, setNewMovie] = useState([]);
 
 
 
@@ -90,7 +91,12 @@ const App = () => {
       });
     });
 
-    const addMovie = (movie) => setMovie(current => [...current,movie])
+    const onMovieAdded = () => {
+      fetchMovies();
+    }
+    
+    const addNewMovie = (newMovie) => 
+      setNewMovie(current => [...current,newMovie])
 
 
   return (
@@ -110,9 +116,12 @@ const App = () => {
                 likes={likes}
                 setLikes={setLikes}
                 setUser={setUser}
+                addNewMovie={addNewMovie}
               />
             }
           />
+          <Route path="/about" element={<About />} />
+
           <Route
             path="/movies/:movieId"
             element={
@@ -134,7 +143,7 @@ const App = () => {
             }
           />
 
-          <Route path="/add-movie" element={<AddMovie />} addMovie={addMovie} />
+          <Route path="/movie/new" element={<AddMovie onMovieAdded={onMovieAdded}/>}  />
 
 
           <Route path="*" element={<PageNotFound />} />

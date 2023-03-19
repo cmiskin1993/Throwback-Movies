@@ -44,6 +44,7 @@ console.log('currentUser', currentUser)
             <h4 className='user-name'> {currentUser.name} </h4>
             <li><NavLink to="/" id="logo" className="active-link" >Welcome </NavLink></li>
             <li><NavLink to="/movies" > Show All Movies</NavLink></li>
+            <li><NavLink to="/about" > About</NavLink></li>
             <button  className='logout-button' onClick={handleLogOut}>Log Out</button>          
           </ul>
     </div>
