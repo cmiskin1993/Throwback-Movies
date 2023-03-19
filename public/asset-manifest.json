@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.12c1bbc8.chunk.css",
+    "main.js": "/static/js/main.d769cbad.chunk.js",
+    "main.js.map": "/static/js/main.d769cbad.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9a6dca14.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9a6dca14.js.map",
+    "static/js/2.09d601ff.chunk.js": "/static/js/2.09d601ff.chunk.js",
+    "static/js/2.09d601ff.chunk.js.map": "/static/js/2.09d601ff.chunk.js.map",
+    "static/js/3.657826f5.chunk.js": "/static/js/3.657826f5.chunk.js",
+    "static/js/3.657826f5.chunk.js.map": "/static/js/3.657826f5.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.12c1bbc8.chunk.css.map": "/static/css/main.12c1bbc8.chunk.css.map",
+    "static/js/2.09d601ff.chunk.js.LICENSE.txt": "/static/js/2.09d601ff.chunk.js.LICENSE.txt",
+    "static/media/movie_college.0a2698a0.webp": "/static/media/movie_college.0a2698a0.webp"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9a6dca14.js",
+    "static/js/2.09d601ff.chunk.js",
+    "static/css/main.12c1bbc8.chunk.css",
+    "static/js/main.d769cbad.chunk.js"
+  ]
+}
