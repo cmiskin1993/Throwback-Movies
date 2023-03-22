@@ -10,7 +10,8 @@ const AddMovie = ({ onMovieAdded }) => {
     title: "",
     genre: "",
     description: "",
-    image: "",
+    image:
+      "https://www.pngitem.com/pimgs/m/269-2692978_clapper-board-png-download-clapperboard-clipart-transparent-png.png",
   });
 
   const onSubmit = async (e) => {
