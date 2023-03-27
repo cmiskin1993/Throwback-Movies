@@ -1,20 +1,24 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./MovieDetails.css";
 import "../Sessions/Form.css";
 import "../Movies/CommentCard.css";
 import CommentCard from "./CommentCard";
 
-const MovieDetail = () => {
+const MovieDetail = ({ removeMovie }) => {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState(false);
   const [comments, setComments] = useState([]);
 
+  const currentUser = useSelector((state) => state.sessions.currentUser);
+
   const addComment = (comment) =>
     setComments((current) => [...current, comment]);
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     content: "",
@@ -72,6 +76,24 @@ const MovieDetail = () => {
 
   const { id, title, genre, image, description } = movie;
 
+  const handleDelete = () => {
+    fetch(`/movies/${params.movieId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      if (res.ok) {
+        removeMovie(id);
+        navigate(`/movies`);
+      } else {
+        res
+          .json()
+          .then((data) =>
+            setErrors(Object.entries(data.errors).map((e) => `${e[0]} ${e[1]}`))
+          );
+      }
+    });
+  };
+
   return (
     <div>
       <div>
@@ -89,6 +111,11 @@ const MovieDetail = () => {
               ))
             : null}
         </h3>
+
+        {movie.user_id === currentUser.id ? (
+          <button onClick={handleDelete}>Delete</button>
+        ) : null}
+
         <form className="comments-form-container" onSubmit={handleSubmit}>
           <label> Comment </label>
           <textarea

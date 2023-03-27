@@ -13,8 +13,15 @@ class MoviesController < ApplicationController
     end
 
     def create
+        params[:user_id] = current_user.id
         movie = Movie.create!(movie_params)
         render json: movie, status: :created
+    end 
+
+    def destroy
+        movie = Movie.find(params[:id])
+        movie.destroy
+        head :no_content 
     end 
 
     private

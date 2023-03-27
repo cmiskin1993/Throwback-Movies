@@ -18,8 +18,7 @@ import About from "./Static/About";
 import PageNotFound from "./Errors/PageNotFound";
 
 const App = () => {
-
-  const currentUser = useSelector(state => state.sessions.currentUser);
+  const currentUser = useSelector((state) => state.sessions.currentUser);
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState(false);
@@ -29,11 +28,9 @@ const App = () => {
   const [comments, setComments] = useState([]);
   const [newMovie, setNewMovie] = useState([]);
 
-
-
   /**
    * Called when app first loads.
-   * 
+   *
    * Fetches current user (if logged in), movies, and likes. If
    * user is NOT logged in, current user, movies, and likes will
    * be empty.
@@ -43,7 +40,6 @@ const App = () => {
     fetchMovies();
     fetchLikes();
   }, []);
-
 
   const fetchMovies = () => {
     fetch("/movies").then((res) => {
@@ -67,16 +63,19 @@ const App = () => {
 
   /**
    * Called right after user logs in on Login page.
-   * 
+   *
    * Fetches movies and likes now that user is logged in.
    */
-  const onLogin = () => { 
+  const onLogin = () => {
     fetchMovies();
     fetchLikes();
-   }
+  };
 
   const deleteComment = (id) =>
     setComments((current) => current.filter((comment) => comment.id !== id));
+
+  const removeMovie = (id) =>
+    setMovies((current) => current.filter((movie) => movie.id !== id));
 
   if (errors) return <h1>{errors}</h1>;
 
@@ -91,13 +90,12 @@ const App = () => {
       });
     });
 
-    const onMovieAdded = () => {
-      fetchMovies();
-    }
-    
-    const addNewMovie = (newMovie) => 
-      setNewMovie(current => [...current,newMovie])
+  const onMovieAdded = () => {
+    fetchMovies();
+  };
 
+  const addNewMovie = (newMovie) =>
+    setNewMovie((current) => [...current, newMovie]);
 
   return (
     <div className="global-style">
@@ -107,7 +105,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login onLogin={onLogin} />} />
           <Route path="/signup" element={<Signup onLogin={onLogin} />} />
-          <Route path="/users/:id" element={<User  />} />
+          <Route path="/users/:id" element={<User />} />
           <Route
             path="/movies"
             element={
@@ -125,14 +123,15 @@ const App = () => {
           <Route
             path="/movies/:movieId"
             element={
-              <MovieDetail  comments={comments} />
+              <MovieDetail comments={comments} removeMovie={removeMovie} />
             }
           />
           <Route
             path="/movies/:movieId/comments/:commentId"
             element={
               <CommentDetails
-                deleteComment={deleteComment} currentUser={currentUser}
+                deleteComment={deleteComment}
+                currentUser={currentUser}
               />
             }
           />
@@ -143,8 +142,10 @@ const App = () => {
             }
           />
 
-          <Route path="/movie/new" element={<AddMovie onMovieAdded={onMovieAdded}/>}  />
-
+          <Route
+            path="/movie/new"
+            element={<AddMovie onMovieAdded={onMovieAdded} />}
+          />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
