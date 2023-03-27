@@ -83,10 +83,6 @@ const Signup = ({ onLogin }) => {
 
         <input type="submit" value="Sign up!" />
         <div>
-          {/* errors = { name: ["cannot be blank", "is too short"], email: ["cannot be blank"] }
-            Object.entries(errors) => 
-            [["name", ["cannot be blank", "is too short"]], ["email", ["cannot be blank"]]]
-         */}
           {errors
             ? Object.entries(errors).map((error, i) => (
                 <div key={i}> {`${error[0]}: ${error[1]}`} </div>

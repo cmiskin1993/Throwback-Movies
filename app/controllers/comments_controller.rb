@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
 
+
+    before_action :is_authorized?, only: [:show, :create]
+
 def index
-    # TODO: error handling for movie not found
     @movie = Movie.find(params[:movie_id])
     render json: @movie.comments, status: :ok
 end
@@ -15,7 +17,7 @@ def create
     @movie = Movie.find(params[:movie_id])
     params[:user_id] = current_user.id
     @comment = @movie.comments.create(comment_params)
-    render json: @comment, status: :created
+    render json: @comment, status: :ok
 end
 
 def destroy

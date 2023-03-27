@@ -44,10 +44,8 @@ const AddMovie = ({ onMovieAdded }) => {
       <h2>Add New Movie </h2>
       <h3>
         {errors
-          ? errors.map((e) => (
-              <div>
-                {e[0]} {e[1]}
-              </div>
+          ? Object.entries(errors).map((error, i) => (
+              <div key={i}> {`${error[1]}`} </div>
             ))
           : null}
       </h3>
@@ -59,13 +57,27 @@ const AddMovie = ({ onMovieAdded }) => {
           value={formData.title}
           onChange={handleChange}
         />
-        <label> Movie Genre: </label>
-        <input
-          type="text"
-          name="genre"
-          value={formData.genre}
-          onChange={handleChange}
-        />
+        <label>
+          <p>Movie Genre:</p>
+          <select
+            name="genre"
+            onChange={handleChange}
+            value={formData.genre || ""}
+          >
+            <option value="">--Please choose a genre--</option>
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="romantic-comedy">Romantic Comedy</option>
+            <option value="thriller">Thriller</option>
+            <option value="science-fiction">Science Fiction</option>
+            <option value="sports">Sports</option>
+          </select>
+        </label>
+
         <label> Description: </label>
         <textarea
           type="text"
