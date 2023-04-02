@@ -16,11 +16,12 @@ const AddMovie = ({ onMovieAdded }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     fetch("/movies", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...formData, ongoing: true }),
-    }).then((res) => {
+    }).then(async (res) => {
       if (res.ok) {
         onMovieAdded();
         navigate("/movies");
